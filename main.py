@@ -127,12 +127,7 @@ async def al(ctx):
       embed.add_field(name="Vous êtes au grade le plus élevé",
                       value="Chef de la Marine",
                       inline=True)
-
-  image_binary = x.affichage()
   await ctx.send(embed=embed)
-  if x.alignement == 1:
-    await ctx.send(
-        file=discord.File(image_binary, filename="image_modifiee.jpg"))
 
 
 @bot.command()
@@ -558,4 +553,4 @@ async def display_quest(ctx):
   await ctx.send(embed=embed)
 
 keep_alive()
-bot.run("MTMwODUxNjYwMDAwNTEzMjQxOA.G3dKBJ.oNWWpdjT52MA1DaGD_F5MnIHdvvYB93JcIYM6E")
+bot.run("MTMwODUxNjYwMDAwNTEzMjQxOA.Gwa-8E.Riy76PV3XPRvfDqPbFUmAxFggy4KMNA0ocAWf8")
