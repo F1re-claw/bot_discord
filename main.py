@@ -554,4 +554,4 @@ async def display_quest(ctx):
   await ctx.send(embed=embed)
 
 keep_alive()
-bot.run("MTMwODUxNjYwMDAwNTEzMjQxOA.GNyZ7E.N6uS_dKZPv00bAtBOVcpEbUoShVuYOFhkVEJoM")
+bot.run("MTMwODUxNjYwMDAwNTEzMjQxOA.GJNcCn.kN8xS8OwCd-ZRV5RYNaYLI5gGogyR23XjnkTu0")
