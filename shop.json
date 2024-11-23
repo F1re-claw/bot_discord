@@ -1,0 +1,66 @@
+{
+    "Barque": {
+        "price": 1000,
+        "description": "Un petit bateau pour naviguer sur l'eau."
+    },
+    "Petit bateau": {
+        "price": 10000,
+        "description": "Un bateau un peu plus spacieux pour vos aventures."
+    },
+    "Petite dynamite": {
+        "price": 10000,
+        "description": "Explosif pratique pour ouvrir des chemins ou neutraliser des obstacles."
+    },
+    "Sabre basique": {
+        "price": 20000,
+        "description": "Un sabre standard, idéal pour débuter dans le maniement des armes."
+    },
+    "Sabre random": {
+        "price": 100000,
+        "description": "Un sabre avec des caractéristiques aléatoires. Peut-être une perle rare ?"
+    },
+    "Bateau moyen": {
+        "price": 100000,
+        "description": "Un bateau confortable pouvant accueillir une petite équipe."
+    },
+    "Petit Appartement": {
+        "price": 100000,
+        "description": "Un appartement modeste, idéal pour investir ou se reposer."
+    },
+    "Magasin": {
+        "price": 1000000,
+        "description": "Un magasin pour démarrer une activité commerciale rentable."
+    },
+    "Escargophone": {
+        "price": 2000000,
+        "description": "Un dispositif de communication longue distance."
+    },
+    "Ryo O'Wazamono": {
+        "price": 2000000,
+        "description": "Un sabre de haute qualité, réservé aux experts du combat."
+    },
+    "Sabre2": {
+        "price": 10000000,
+        "description": "Un sabre rare avec 10% de chances d'être un O'Wazamono."
+    },
+    "Casino": {
+        "price": 100000000,
+        "description": "Investissez dans un casino et récoltez des bénéfices importants."
+    },
+    "PetitFDD": {
+        "price": 150000000,
+        "description": "Un fruit du démon aléatoire (paramecia ou zoan naturel)."
+    },
+    "O'Wazamono": {
+        "price": 200000000,
+        "description": "Un sabre d'exception parmi les meilleurs du monde."
+    },
+    "GrandFDD": {
+        "price": 400000000,
+        "description": "Un fruit du démon aléatoire (paramecia, zoan naturel ou logia)."
+    },
+    "Logia": {
+        "price": 1500000000,
+        "description": "Un fruit du démon de type logia, d'une puissance exceptionnelle."
+    }
+}
