@@ -277,14 +277,6 @@ async def add(ctx, stat, nb):
       x.vitesse += nb
     elif stat == "sagesse":
       x.sagesse += nb
-    elif stat == "armement":
-      x.armement += nb
-    elif stat == "observation":
-      x.observation += nb
-    elif stat == "rois":
-      x.rois += nb
-    elif stat == "style":
-      x.style += nb
     elif stat == "fdd":
       x.fdd += nb
     elif stat == "points":
