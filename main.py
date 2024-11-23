@@ -527,6 +527,15 @@ async def Delq_error(ctx, error):
         f"❌ {ctx.author.mention}, vous n'avez pas la permission requise pour exécuter cette commande (Administrateur nécessaire)."
     )
 
+@bot.command()
+async def Memory(ctx):
+  with open('data.json', 'r') as f:
+    try:
+      data = json.load(f)
+    except json.JSONDecodeError:
+      data = {}
+  await ctx.send(f"{data}")
+
 
 @bot.command(name="quest")
 async def display_quest(ctx):
