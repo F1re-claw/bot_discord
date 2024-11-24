@@ -153,17 +153,22 @@ async def inventaire(ctx, user: discord.Member = None):
 
 @bot.command("add_inventaire")
 @commands.has_permissions(administrator=True)
-async def inv(ctx,item_name, user: discord.Member = None)):
+async def inv(ctx,item_name, user: discord.Member = None):
   if user is None:
     user = ctx.author
+  else:
+    users = user.name
   data = Data(user)
   data.initia()
   data.inventaire.append(item_name)
   data.ajoute_db()
 @bot.command("del_inventaire")
 @commands.has_permissions(administrator=True)
-async def inv1(ctx, item_name, user: discord.Member = None)):
-  
+async def inv1(ctx, item_name, user: discord.Member = None):
+  if user is None:
+    user = ctx.author
+  else:
+    users = user.name
   data = Data(user)
   data.initia()
   data.inventaire.remove(item_name)          
