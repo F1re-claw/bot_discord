@@ -6,7 +6,6 @@ from data import Data, Quest, Shop
 from keep_alive import keep_alive
 from random import randint
 import json
-import aiohttp
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -58,6 +57,7 @@ async def salaire(ctx):
   else:
     await ctx.send("Arrête de faire le rat comme ça la ")
 
+
 @bot.command()
 async def start(ctx, alignment, username):
   data = Data(ctx.author)
@@ -76,31 +76,6 @@ async def start(ctx, alignment, username):
     await ctx.send("Votre personnage a été créé avec succès !")
   else:
     await ctx.send("L'alignement n'existe pas.")
-
-    IMAGE_FOLDER = "./images"
-    os.makedirs(IMAGE_FOLDER, exist_ok=True)
-
-    if ctx.message.attachments:
-        attachment = ctx.message.attachments[0]
-
-        if "image" in attachment.content_type:
-            file_path = os.path.join(IMAGE_FOLDER, f"{ctx.author.id}.jpg")  # Sauvegarde avec l'ID utilisateur
-
-            try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(attachment.url) as response:
-                        if response.status == 200:
-                            with open(file_path, 'wb') as f:
-                                f.write(await response.read())
-                            await ctx.send("Image téléchargée et sauvegardée avec succès.")
-                        else:
-                            await ctx.send("Erreur lors du téléchargement de l'image (code HTTP non 200).")
-            except Exception as e:
-                await ctx.send(f"Une erreur est survenue : {e}")
-        else:
-            await ctx.send("Le fichier attaché n'est pas une image.")
-    else:
-        await ctx.send("Aucune image n'a été attachée au message.")
 
 
 @bot.command(name="Al")
@@ -460,7 +435,6 @@ async def Del_error(ctx, error):
 @bot.command(name="del_user")
 @commands.has_permissions(administrator=True)
 async def Del_user(ctx, user: discord.Member):
-  IMAGE_FOLDER = "./images"
   users = user.name
   data = Data(users)
   data.initia()
@@ -469,15 +443,6 @@ async def Del_user(ctx, user: discord.Member):
   del datas[users]
   with open("data.json", "w") as f:
     json.dump(datas, f, indent=4)
-
-  filename = f"{users}.jpg"
-  file_path = os.path.join(IMAGE_FOLDER, filename)
-
-  if os.path.exists(file_path):
-    os.remove(file_path)
-  else:
-    await ctx.send(f"Aucune image trouvée avec le nom `{filename}`.")
-  data.ajoute_db()
 
 
 @bot.command(name="add_quest")

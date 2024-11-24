@@ -216,40 +216,6 @@ class Data:
             with open(self.fichier_json, "w") as f:
                 json.dump(donnees, f, indent=4)
 
-    def affichage(self):
-        prime = Image.open("images/prime.jpg")
-        font_path = "images/one piece font.ttf"
-        font_size = 18
-        font = ImageFont.truetype(font_path, font_size)
-        image_to_insert = Image.open(f"images/{self.user}.jpg")
-        image_to_insert = image_to_insert.resize((110, 83))
-
-        draw = ImageDraw.Draw(prime)
-
-        prime_coordinates = [22, 165, 120, 182]
-        nom_coordinates = [14, 146, 121, 164]
-
-        width, height = 110, 83
-        x, y = 14, 45
-        coordinates = [x, y, x + width, y + height]
-
-        draw.text((prime_coordinates[0] + 5, prime_coordinates[1] + 2),
-                  str(self.honneurs),
-                  fill=(0, 0, 0),
-                  font=font)
-        draw.text((nom_coordinates[0] + 5, nom_coordinates[1] + 2),
-                  self.username,
-                  fill=(0, 0, 0),
-                  font=font)
-
-        prime.paste(image_to_insert, (x, y))
-
-        image_binary = BytesIO()
-        prime.save(image_binary, format="JPEG")
-        image_binary.seek(0)
-
-        return image_binary
-
 
 class Shop:
 
