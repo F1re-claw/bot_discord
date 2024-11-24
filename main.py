@@ -6,6 +6,7 @@ from data import Data, Quest, Shop
 from keep_alive import keep_alive
 from random import randint
 import json
+import aiohttp
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -35,6 +36,7 @@ async def salaire(ctx):
   temps = aujourdhui - dernier_salaire
 
   if temps >= timedelta(weeks=1):
+    data.honneurs += 1000
     data.honneurs = round(data.honneurs * 1.05)
     data.salaire = [aujourdhui.day, aujourdhui.month, aujourdhui.year]
     if data.alignement == 0:
@@ -56,7 +58,6 @@ async def salaire(ctx):
   else:
     await ctx.send("Arrête de faire le rat comme ça la ")
 
-
 @bot.command()
 async def start(ctx, alignment, username):
   data = Data(ctx.author)
@@ -76,24 +77,30 @@ async def start(ctx, alignment, username):
   else:
     await ctx.send("L'alignement n'existe pas.")
 
-  if ctx.message.attachments:
-    attachment = ctx.message.attachments[0]
     IMAGE_FOLDER = "./images"
-    if "image" in attachment.content_type:
-      file_path = os.path.join(IMAGE_FOLDER, f"{data.user}.jpg")
-      async with aiohttp.ClientSession() as session:
-        async with session.get(attachment.url) as response:
-          if response.status == 200:
-            with open(file_path, 'wb') as f:
-              f.write(await response.read())
-          else:
-            await ctx.send("Erreur lors du téléchargement de l'image.")
-    else:
-      await ctx.send("Le fichier n'est pas une image.")
-  else:
-    await ctx.send("Aucune image attachée au message.")
+    os.makedirs(IMAGE_FOLDER, exist_ok=True)
 
-  bot.run('votre_token')
+    if ctx.message.attachments:
+        attachment = ctx.message.attachments[0]
+
+        if "image" in attachment.content_type:
+            file_path = os.path.join(IMAGE_FOLDER, f"{ctx.author.id}.jpg")  # Sauvegarde avec l'ID utilisateur
+
+            try:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(attachment.url) as response:
+                        if response.status == 200:
+                            with open(file_path, 'wb') as f:
+                                f.write(await response.read())
+                            await ctx.send("Image téléchargée et sauvegardée avec succès.")
+                        else:
+                            await ctx.send("Erreur lors du téléchargement de l'image (code HTTP non 200).")
+            except Exception as e:
+                await ctx.send(f"Une erreur est survenue : {e}")
+        else:
+            await ctx.send("Le fichier attaché n'est pas une image.")
+    else:
+        await ctx.send("Aucune image n'a été attachée au message.")
 
 
 @bot.command(name="Al")
