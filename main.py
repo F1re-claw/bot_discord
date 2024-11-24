@@ -151,7 +151,21 @@ async def inventaire(ctx, user: discord.Member = None):
     embed.add_field(name=i, value=1, inline=True)
   await ctx.send(embed=embed)
 
-
+@bot.command("add_inventaire)
+@commands.has_permissions(administrator=True)
+async def inv(ctx,item_name):
+  data = Data(ctx.author)
+  data.initia()
+  data.inventaire.append(item_name)
+  data.ajoute_db()
+@bot.command("add_inventaire)
+@commands.has_permissions(administrator=True)
+async def inv1(ctx, item_name):
+  
+  data = Data(ctx.author)
+  data.initia()
+  data.inventaire.remove(item_name)          
+  data.ajoute_db() 
 @bot.command()
 async def alignment(ctx):
   data = Data(ctx.author)
