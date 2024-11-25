@@ -151,28 +151,7 @@ async def inventaire(ctx, user: discord.Member = None):
     embed.add_field(name=i, value=1, inline=True)
   await ctx.send(embed=embed)
 
-@bot.command("add_inventaire")
-@commands.has_permissions(administrator=True)
-async def inv(ctx,item_name, user: discord.Member = None):
-  if user is None:
-    user = ctx.author
-  else:
-    users = user.name
-  data = Data(user)
-  data.initia()
-  data.inventaire.append(item_name)
-  data.ajoute_db()
-@bot.command("del_inventaire")
-@commands.has_permissions(administrator=True)
-async def inv1(ctx, item_name, user: discord.Member = None):
-  if user is None:
-    user = ctx.author
-  else:
-    users = user.name
-  data = Data(user)
-  data.initia()
-  data.inventaire.remove(item_name)          
-  data.ajoute_db() 
+
 @bot.command()
 async def alignment(ctx):
   data = Data(ctx.author)
@@ -547,4 +526,4 @@ async def display_quest(ctx):
   await ctx.send(embed=embed)
 
 keep_alive()
-bot.run("MTMwODUxNjYwMDAwNTEzMjQxOA.GJNcCn.kN8xS8OwCd-ZRV5RYNaYLI5gGogyR23XjnkTu0")
+bot.run("MTMwODUxNjYwMDAwNTEzMjQxOA.Gzv1Sg.FbbFcfWsz6NsSAJm_yNCQNK9ox9VG27u7EXSwU")
