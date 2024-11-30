@@ -12,7 +12,8 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
-def roll(n):
+@bot.command()
+async def roll(n):
   return randint(1, n)
 
 
@@ -228,7 +229,14 @@ async def train(ctx):
       x.train = 0
   if x.train != 2:
     x.train += 1
-    x.points += round(5 * (1 + x.sagesse / 100))
+    if x.force + x.resistance + x.vitesse + x.sagesse + x.endurance < 250:
+      x.points += round(5 * (1 + x.sagesse / 100))
+    elif x.force + x.resistance + x.vitesse + x.sagesse + x.endurance < 600:
+      x.points += round(10 * (1 + x.sagesse / 100))
+    elif x.force + x.resistance + x.vitesse + x.sagesse + x.endurance < 2000:
+      x.points += round(15 * (1 + x.sagesse / 100))
+    else:
+      x.points += round(20 * (1 + x.sagesse / 100))
     await ctx.send(
         f"Vous avez gagné {round(5 * (1 + x.sagesse / 100))} points !")
   else:
@@ -334,14 +342,15 @@ async def Sale_item(ctx, item_name):
   shop.initia()
   shop_items = shop.all_object
 
-  if item_name in data.inventaire:
-    item_details = shop_items[item_name]
-    price = item_details["price"]
-    data.argent += price // 2
-    data.ajoute_db()
-    await ctx.send(f"Vous avez vendu {item_name} pour {price//2:,} 💰.")
-  else:
-    await ctx.send("Cet objet n'est pas disponible dans le shop.")
+  for i in range(len(data.inventaire)):
+    if item_name == str(data.inventaire[i]):
+      item_details = shop_items[item_name]
+      price = item_details["price"]
+      data.argent += price // 2
+      data.inventaire.pop(i)
+      data.ajoute_db()
+      await ctx.send(f"Vous avez vendu {item_name} pour {price//2:,} 💰.")
+      break
 
 
 @bot.command(name="buy")
