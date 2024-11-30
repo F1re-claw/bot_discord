@@ -11,6 +11,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+def roll(n):
+  return randint(1, n)
 
 @bot.command()
 async def roll(n):
