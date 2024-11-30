@@ -66,8 +66,8 @@ async def start(ctx, alignment, username):
   data = Data(ctx.author)
   data.ajouter_personne()
   data.initia()
-  data.argent = roll(15000)
-  data.honneurs = roll(150000)
+  data.argent = rol(15000)
+  data.honneurs = rol(150000)
   data.username = username
   if alignment == "pirate":
     data.alignement = 1
