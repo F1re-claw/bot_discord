@@ -336,21 +336,31 @@ async def display_shop(ctx):
 
 @bot.command(name="sell")
 async def Sale_item(ctx, item_name):
-  data = Data(ctx.author)
-  data.initia()
-  shop = Shop()
-  shop.initia()
-  shop_items = shop.all_object
+    data = Data(ctx.author)
+    data.initia()
+    shop = Shop()
+    shop.initia()
+    shop_items = shop.all_object
 
-  for i in range(len(data.inventaire)):
-    if item_name == str(data.inventaire[i]):
-      item_details = shop_items[item_name]
-      price = item_details["price"]
-      data.argent += price // 2
-      data.inventaire.pop(i)
-      data.ajoute_db()
-      await ctx.send(f"Vous avez vendu {item_name} pour {price//2:,} 💰.")
-      break
+    # Vérifier si l'objet existe dans le magasin
+    if item_name not in shop_items:
+      await ctx.send("Cet objet n'existe pas dans le magasin !")
+      return
+
+    # Vérifier si l'utilisateur possède l'objet
+    for i in range(len(data.inventaire)):
+      if item_name == str(data.inventaire[i]):  # Adaptez ici si nécessaire
+        item_details = shop_items[item_name]
+        price = item_details["price"]
+
+        # Supprimer l'objet et ajouter l'argent
+        data.argent += price // 2
+        data.inventaire.pop(i)  # Supprimer l'objet
+        data.ajoute_db()  # Sauvegarder les changements
+        await ctx.send(f"Vous avez vendu {item_name} pour {price // 2:,} 💰.")
+        break
+    else:
+      await ctx.send("L'objet n'est pas dans votre inventaire !")
 
 
 @bot.command(name="buy")
