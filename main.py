@@ -11,7 +11,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-def roll(n):
+def rol(n):
   return randint(1, n)
 
 @bot.command()
@@ -390,7 +390,7 @@ async def buy_item(ctx, *, item_name=None):
     if x.argent >= shop[found_item]["price"]:
       x.argent -= shop[found_item]["price"]
       if found_item == "Sabre random":
-        rarity = roll(100)
+        rarity = rol(100)
         if rarity <= 6:
           found_item = "Ryo O'Wazamono"
         else:
