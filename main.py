@@ -466,6 +466,18 @@ async def Del_user(ctx, user: discord.Member):
     json.dump(datas, f, indent=4)
 
 
+@bot.command(name="reset_app")
+@commands.has_permissions(administrator=True)
+async def Reset_app(ctx):
+  with open("data.json", "r") as f:
+    datas = json.load(f)
+  del datas
+  with open("data.json", "w") as f:
+    json.dump(datas, f, indent=4)
+  await ctx.send(f"Données réinitialisées")
+  
+
+
 @bot.command(name="add_quest")
 @commands.has_permissions(administrator=True)
 async def add_quest(ctx, quest_name, points, berrys, honneur):
